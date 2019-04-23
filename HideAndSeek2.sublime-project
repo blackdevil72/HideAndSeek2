@@ -1,0 +1,17 @@
+{
+	"folders":
+	[
+		{
+			"path": "configs"
+		},
+		{
+			"path": "plugins"
+		},
+		{
+			"path": "scripting"
+		},
+		{
+			"path": "translations"
+		}
+	]
+}

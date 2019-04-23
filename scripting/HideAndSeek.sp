@@ -9,7 +9,7 @@
 #include <smlib> // https://github.com/bcserv/smlib
 
 // HideAndSeek Includes
-#include <HideAndSeek/include.sp>
+#include <hideandseek/include.sp>
 
 
 // Initialise Plugin
@@ -18,7 +18,5 @@ public void OnPlugInStart()
 	LoadTranslations("HideAndSeek.phrases")
 	LoadTranslations("common.phrases")
 	Hns_CreateConVar()
-	Hns_CreateHooks()
-	Hns_CreateCommands()
-	Hns_CreateAdminCommands()
+	Hns_CreateCAdminCommands()
 }

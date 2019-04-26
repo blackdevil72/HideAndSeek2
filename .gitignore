@@ -1,5 +1,6 @@
-/scripting/include/
+*.inc
 HideAndSeek2.sublime-project
 HideAndSeek2.sublime-workspace
 /scripting/compile.sh
 /scripting/spcomp
+/scripting/compiled

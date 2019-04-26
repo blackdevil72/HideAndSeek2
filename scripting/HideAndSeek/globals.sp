@@ -1,6 +1,4 @@
 
-
-
 // HideAndSeek Defines
 #define PLUGIN_VERSION "2.0 dev"
 #define PREFIX "{green}Hide and Seek {default}> {lightgreen}"

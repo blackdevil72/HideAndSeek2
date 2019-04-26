@@ -9,8 +9,9 @@
 #include <smlib> // https://github.com/bcserv/smlib
 
 // HideAndSeek Includes
-#include <hideandseek/include.sp>
-
+#include "HideAndSeek/globals.sp"
+#include "HideAndSeek/convars.sp"
+#include "HideAndSeek/commands.sp"
 
 // Initialise Plugin
 public void OnPlugInStart()
@@ -18,5 +19,10 @@ public void OnPlugInStart()
 	LoadTranslations("HideAndSeek.phrases")
 	LoadTranslations("common.phrases")
 	Hns_CreateConVar()
-	Hns_CreateCAdminCommands()
+	Hns_CreateAdminCommands()
+}
+
+public void OnPlugInEnd()
+{
+
 }

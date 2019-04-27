@@ -12,7 +12,7 @@ public void Hns_CreateCommands()
 
 public void Hns_CreateAdminCommands()
 {
-	RegAdminCmd("sm_hns_plugin_version", Cmd_PrintHnsVersion, ADMFLAG_CHAT, "Print Hide and Seek plugin version.")
+	RegAdminCmd("sm_hns_plugin_version", Hns_Cmd_PrintHnsVersion, ADMFLAG_CHAT, "Print Hide and Seek plugin version.")
 }
 
 
@@ -32,7 +32,7 @@ public void Hns_CreateAdminCommands()
 
 // Print plugin Version To The PrintToChatAll
 // Usefull For Support
-public Action Cmd_PrintHnsVersion(int client, int args)
+public Action Hns_Cmd_PrintHnsVersion(int client, int args)
 {
 	if (!global_HnsEnabled)
 	{
@@ -40,9 +40,7 @@ public Action Cmd_PrintHnsVersion(int client, int args)
 		return Plugin_Handled
 	}
 
-	char Str_PluginVersion[PLATFORM_MAX_PATH]
-	GetConVarString(cvar_Version, Str_PluginVersion, PLATFORM_MAX_PATH)
-	CPrintToChatAll("%s version %s", PREFIX, Str_PluginVersion)
-	PrintToServer("[SM][HnS] Hide and Seek version %s", Str_PluginVersion)
+	CPrintToChatAll("%s version %s", PREFIX, GetConVarString(cvar_Version))
+	PrintToServer("[SM][HnS] Hide and Seek version %s", GetConVarString(cvar_Version))
 	return Plugin_Handled
 }

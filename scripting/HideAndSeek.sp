@@ -11,6 +11,8 @@
 // HideAndSeek Includes
 #include "HideAndSeek/globals.sp"
 #include "HideAndSeek/convars.sp"
+#include "HideAndSeek/hooks.sp"
+#include "HideAndSeek/events.sp"
 #include "HideAndSeek/commands.sp"
 
 // Initialise Plugin
@@ -19,7 +21,10 @@ public void OnPlugInStart()
 	LoadTranslations("HideAndSeek.phrases")
 	LoadTranslations("common.phrases")
 	Hns_CreateConVar()
+	Hns_CreateHooks()
+	Hns_CreateCommands()
 	Hns_CreateAdminCommands()
+	Hns_HooksEvents()
 }
 
 public void OnPlugInEnd()

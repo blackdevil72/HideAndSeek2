@@ -15,19 +15,22 @@
 #include "HideAndSeek/events.sp"
 #include "HideAndSeek/commands.sp"
 
-// Initialise Plugin
-public void OnPlugInStart()
+public Plugin myinfo =
 {
-	LoadTranslations("HideAndSeek.phrases")
-	LoadTranslations("common.phrases")
-	Hns_CreateConVar()
-	Hns_CreateHooks()
-	Hns_CreateCommands()
-	Hns_CreateAdminCommands()
-	Hns_HooksEvents()
+	name = "Cs:S Hide and Seek",
+	author = "Version 2: blackdevil72 | Version 1 credits to: Selax & Peace-Maker for the original idea",
+	description = "Terrorists set a model and hide, CT seek them.",
+	version = PLUGIN_VERSION,
+	url = "https://github.com/blackdevil72/"
 }
 
-public void OnPlugInEnd()
+public void OnPlugInStart()
 {
-
+	PrintToServer("[SM][HNS] OnPlugInStart call successfull")
+//	LoadTranslations("HideAndSeek.phrases")
+//	LoadTranslations("common.phrases")
+	Hns_Convars_CreateCvars()
+	Hns_Hooks_CreateHooks()
+//	Hns_Commands_CreateCommands()
+//	Hns_Commands_CreateAdminCommands()
 }

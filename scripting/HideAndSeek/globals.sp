@@ -1,3 +1,8 @@
+/*
+*
+* Hide And Seek : Define All The Variables that May be Used In Any Files
+*
+*/
 
 // HideAndSeek Defines
 #define PLUGIN_VERSION "2.0 dev"
@@ -6,20 +11,25 @@
 
 
 // HideAndSeek ConVars Initialisation
-ConVar cvar_Version
-ConVar cvar_HnsEnable
-//ConVar cvar_FreezeCt
-//ConVar cvar_FreezeTimeCt
-//ConVar cvar_ModelChangeLimit
-//ConVar cvar_ModelChangeTime
-//ConVar cvar_ModelAutoChoose
-//ConVar cvar_WhistleEnabled
-//ConVar cvar_WhistlePack
-//ConVar cvar_WhistleAuto
-//ConVar cvar_WhistleAutoInterval
-//ConVar cvar_WhistleLimit
-//ConVar cvar_WhistleDelay
+ConVar Cvar_HnsVersion
+ConVar Cvar_HnsEnabled
 
+/*
+FUTURE CVARS NAMES MAY CHANGE
+
+ConVar cvar_FreezeCt
+ConVar cvar_FreezeTimeCt
+ConVar cvar_ModelChangeLimit
+ConVar cvar_ModelChangeTime
+ConVar cvar_ModelAutoChoose
+ConVar cvar_WhistleEnabled
+ConVar cvar_WhistlePack
+ConVar cvar_WhistleAuto
+ConVar cvar_WhistleAutoInterval
+ConVar cvar_WhistleLimit
+ConVar cvar_WhistleDelay
+
+*/
 
 //HideAndSeek Globals
-bool global_HnsEnabled
+bool Global_HnsEnabled

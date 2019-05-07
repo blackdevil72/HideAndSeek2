@@ -1,11 +1,13 @@
-public void Hns_CreateHooks()
+/*
+*
+* Hide And Seek : Hook Game Events And Call Related Function
+*
+*/
+
+public Hns_Hooks_CreateHooks()
 {
 	// Game Event Hooks
-	HookEvent("player_spawn", Hns_Event_OnPlayerSpawn)
+	HookEvent("round_start", Hns_Events_RoundStart)
 
-	// SDK Hooks
-	SDKHook(client, SDKHook_WeaponCanUse, OnWeaponCanUse);
-	SDKHook(client, SDKHook_WeaponCanSwitchTo, OnWeaponCanUse);
-	SDKHook(client, SDKHook_WeaponEquip, OnWeaponCanUse);
-	SDKHook(client, SDKHook_WeaponSwitch, OnWeaponCanUse);
+	PrintToServer("[SM][HNS] Hns_Hooks_CreateHooks call successfull")
 }

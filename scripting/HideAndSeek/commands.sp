@@ -12,7 +12,7 @@ public Hns_Commands_CreateCommands()
 
 public Hns_Commands_CreateAdminCommands()
 {
-	RegAdminCmd("sm_hns_version", Hns_Commands_PrintHnsVersion, ADMFLAG_CHAT, "Print Hide and Seek plugin version.")
+	RegAdminCmd("sm_hns_version", Hns_Commands_PrintHnsVersion, ADMFLAG_CHAT, "Print Hide And Seek plugin version.")
 }
 
 
@@ -31,7 +31,7 @@ public Hns_Commands_CreateAdminCommands()
 */
 
 // Print plugin Version In Chat And In Server Output
-public Action Hns_Commands_PrintHnsVersion(int client, int args)
+static Action Hns_Commands_PrintHnsVersion(int client, int args)
 {
 	if (!Global_HnsEnabled)
 	{

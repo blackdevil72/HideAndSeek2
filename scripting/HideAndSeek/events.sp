@@ -6,36 +6,44 @@
 *
 */
 
-public Action Hns_Events_RoundStart(Event event, const char[] name, bool dontBroadcast)
+public Action Hns_Events_PlayerSpawn(Event event, const char[] name, bool dontBroadcast)
 {
-	PrintToServer("[SM][HNS] Hns_Event_RoundStart call successfull")
+	int Client = GetClientOfUserId(GetEventInt(event, "userid"))
 
-	int Client = GetClientOfUserId(GetEventInt(event,"userid"))
-	int ClientTeam = GetClientTeam(Client)
-
-	if (ClientTeam <= CS_TEAM_SPECTATOR || !IsPlayerAlive(Client))
-		return Plugin_Continue
-
-	else if (ClientTeam == CS_TEAM_T)
+	if (GetClientTeam(Client) ==  CS_TEAM_CT)
 	{
-		PrintToServer("[SM][HNS] Hns_Event_RoundStart call successfull -- TEAM T")
-
-		Hns_WeaponDrop(Client)
+		GivePlayerItem(Client, "Weapon_XM1014")
 	}
+}
 
-	else  if (ClientTeam == CS_TEAM_CT)
+public Action Hns_Events_ItemPickup(Event event, const char[] name, bool dontBroadcast)
+{
+	int Client = GetClientOfUserId(GetEventInt(event, "userid"))
+
+	if (GetClientTeam(Client) == CS_TEAM_T)
 	{
-		PrintToServer("[SM][HNS] Hns_Event_RoundStart call successfull -- TEAM CT")
+		for (int WeaponSlot = CS_SLOT_PRIMARY; WeaponSlot <= CS_SLOT_C4; WeaponSlot++)
+		{
+			int WeaponId = GetPlayerWeaponSlot(Client, WeaponSlot)
+
+			if (WeaponId != -1)
+			{
+				RemovePlayerItem(Client, WeaponId)
+				RemoveEntity(WeaponId)
+			}
+		}
 	}
 
 	return Plugin_Continue
 }
 
-static Hns_WeaponDrop(int client)
+public Action Hns_Events_WeaponDrop(int client, int weapon)
 {
-	for (int WeaponSlot = CS_SLOT_PRIMARY; WeaponSlot < CS_SLOT_C4; WeaponSlot++)
+	if (GetClientTeam(client) == CS_TEAM_CT)
 	{
-		int WeaponId = GetPlayerWeaponSlot(client, WeaponSlot)
-		CS_DropWeapon(client, WeaponId, true, false)
+		if (weapon != -1)
+			RemoveEntity(weapon)
 	}
+
+	return Plugin_Continue
 }

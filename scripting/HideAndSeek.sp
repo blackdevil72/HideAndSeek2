@@ -1,10 +1,10 @@
-// Sourcemod includes
+// Sourcemod Includes
 #include <cstrike>
 #include <sdkhooks>
 #include <sdktools>
 #include <sourcemod>
 
-// Third party includes
+// Third Party Includes
 #include <morecolors> // https://forums.alliedmods.net/showthread.php?t=185016
 #include <smlib> // https://github.com/bcserv/smlib
 
@@ -14,6 +14,7 @@
 #include "HideAndSeek/hooks.sp"
 #include "HideAndSeek/events.sp"
 #include "HideAndSeek/commands.sp"
+#include "HideAndSeek/sounds.sp"
 
 public Plugin myinfo =
 {
@@ -24,7 +25,7 @@ public Plugin myinfo =
 	url = "https://github.com/blackdevil72/"
 }
 
-public void OnPlugInStart()
+public void OnPluginStart()
 {
 	PrintToServer("[SM][HNS] OnPlugInStart call successfull")
 //	LoadTranslations("HideAndSeek.phrases")
@@ -32,5 +33,15 @@ public void OnPlugInStart()
 	Hns_Convars_CreateCvars()
 	Hns_Hooks_CreateHooks()
 //	Hns_Commands_CreateCommands()
-//	Hns_Commands_CreateAdminCommands()
+	Hns_Commands_CreateAdminCommands()
+}
+
+public void OnConfigsExecuted()
+{
+	Hns_Sounds_LoadGameSounds()
+}
+
+public void OnClientPutInServer(int client)
+{
+	Hns_Hooks_CreateSdkHooks(client)
 }

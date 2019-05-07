@@ -14,6 +14,11 @@
 ConVar Cvar_HnsVersion
 ConVar Cvar_HnsEnabled
 
+ConVar Cvar_CtHpChangeEnable
+ConVar Cvar_CtHpChangeDecrease
+ConVar Cvar_CtHpChangeIncrease
+ConVar Cvar_CtHpChangeBonus
+
 /*
 FUTURE CVARS NAMES MAY CHANGE
 

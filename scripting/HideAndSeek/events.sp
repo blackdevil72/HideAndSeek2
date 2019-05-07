@@ -6,44 +6,70 @@
 *
 */
 
-public Action Hns_Events_PlayerSpawn(Event event, const char[] name, bool dontBroadcast)
-{
-	int Client = GetClientOfUserId(GetEventInt(event, "userid"))
-
-	if (GetClientTeam(Client) ==  CS_TEAM_CT)
-	{
-		GivePlayerItem(Client, "Weapon_XM1014")
-	}
-}
+/*
+*
+* Sourcemod Hooks Events
+*
+*/
 
 public Action Hns_Events_ItemPickup(Event event, const char[] name, bool dontBroadcast)
 {
 	int Client = GetClientOfUserId(GetEventInt(event, "userid"))
 
-	if (GetClientTeam(Client) == CS_TEAM_T)
-	{
-		for (int WeaponSlot = CS_SLOT_PRIMARY; WeaponSlot <= CS_SLOT_C4; WeaponSlot++)
-		{
-			int WeaponId = GetPlayerWeaponSlot(Client, WeaponSlot)
-
-			if (WeaponId != -1)
-			{
-				RemovePlayerItem(Client, WeaponId)
-				RemoveEntity(WeaponId)
-			}
-		}
-	}
+	Hns_TeamT_WeaponDrop(Client)
 
 	return Plugin_Continue
 }
 
-public Action Hns_Events_WeaponDrop(int client, int weapon)
+public Action Hns_Events_PlayerSpawn(Event event, const char[] name, bool dontBroadcast)
 {
-	if (GetClientTeam(client) == CS_TEAM_CT)
-	{
-		if (weapon != -1)
-			RemoveEntity(weapon)
-	}
+	int Client = GetClientOfUserId(GetEventInt(event, "userid"))
+
+	Hns_TeamCT_GiveShotgun(Client)
 
 	return Plugin_Continue
+}
+
+public Action Hns_Events_PlayerDeath(Event event, const char[] name, bool dontBroadcast)
+{
+	int Client = GetClientOfUserId(GetEventInt(event, "userid"))
+
+	if (GetClientTeam(Client) == CS_TEAM_T)
+		Effect_DissolvePlayerRagDoll(Client, DISSOLVE_ELECTRICAL_LIGHT);
+	
+	else
+		Effect_DissolvePlayerRagDoll(Client, DISSOLVE_NORMAL);
+
+	return Plugin_Continue
+}
+
+/*
+*
+* SDK Hooks Events
+*
+*/
+
+public Action Hns_Events_WeaponDrop(int client, int weapon)
+{
+	Hns_TeamCT_WeaponDrop(client, weapon)
+
+	return Plugin_Continue
+}
+
+public Action Hns_Events_WeaponFire(Event event, const char[] name, bool dontBroadcast)
+{
+	int Client = GetClientOfUserId(GetEventInt(event, "userid"))
+
+	if (GetConVarBool(Cvar_CtHpChangeEnable) == true)
+		Hns_TeamCT_HpDecrease(Client)
+
+	return Plugin_Continue
+}
+
+public Action Hns_Events_TraceAttack(int victim, int &attacker, int &inflictor, float &damage, int &damagetype, int &ammotype, int hitbox, int hitgroup)
+{
+	Hns_TeamT_TakeDamage(victim, damage)
+	Hns_TeamCT_HpIncrease(attacker, victim)
+
+	return Plugin_Handled
 }

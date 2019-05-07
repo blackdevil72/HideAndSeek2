@@ -15,6 +15,8 @@
 #include "HideAndSeek/events.sp"
 #include "HideAndSeek/commands.sp"
 #include "HideAndSeek/sounds.sp"
+#include "HideAndSeek/team_t.sp"
+#include "HideAndSeek/team_ct.sp"
 
 public Plugin myinfo =
 {

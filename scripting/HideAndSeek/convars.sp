@@ -4,6 +4,12 @@ public Hns_Convars_CreateCvars()
 	Cvar_HnsVersion =				CreateConVar("sm_hns_verion", PLUGIN_VERSION, "SM Hide And Seek Version", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD)
 	Cvar_HnsEnabled =				CreateConVar("sm_hns_enable", "1", "Enable Hide And Seek Plugin", _, true, 0.0, true, 1.0)
 
+	Cvar_CtHpChangeEnable =			CreateConVar("sm_hns_ct_hp_change", "1", "Should we change CT HP when using a weapon?", _, true, 0.0, true, 1.0)
+	Cvar_CtHpChangeDecrease =		CreateConVar("sm_hns_ct_hp_decrease", "5", "How many HP should we remove from CT when using a weapon?", _, true, 1.0, true, 100.0)
+	Cvar_CtHpChangeIncrease =		CreateConVar("sm_hns_ct_hp_increase", "15", "How many HP should we add to CT when hurting a T?", _, true, 1.0, true, 100.0)
+	Cvar_CtHpChangeBonus =			CreateConVar("sm_hns_ct_hp_bonus", "25", "How many HP do we grant to CT when killing a T?", _, true, 0.0, true, 100.0)
+
+
 /*
 FUTURE CVARS NAMES MAY CHANGE
 

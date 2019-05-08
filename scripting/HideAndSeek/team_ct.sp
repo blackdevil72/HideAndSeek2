@@ -23,7 +23,7 @@ public Hns_TeamCT_WeaponDrop(int client, int weapon)
 	}
 }
 
-// Decrea CT Health When Fire Weapon
+// Decrease CT Health When Fire Weapon
 public Hns_TeamCT_HpDecrease(int client)
 {
 	int ClientRemainingHealth = GetClientHealth(client) - GetConVarInt(Cvar_CtHpChangeDecrease)
@@ -35,7 +35,7 @@ public Hns_TeamCT_HpDecrease(int client)
 		ForcePlayerSuicide(client)
 }
 
-// Increase CT Health When Hurting A T
+// Increase CT Health When Hurting Or Killing A T
 public Hns_TeamCT_HpIncrease(int client, int victim)
 {
 	if (GetClientHealth(victim) < 0)

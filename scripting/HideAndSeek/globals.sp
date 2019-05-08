@@ -1,6 +1,6 @@
 /*
 *
-* Hide And Seek : Define All The Variables that May be Used In Any Files
+* Hide And Seek : Define All The Variablesh Tat Can Be Used In Any Other Files
 *
 */
 

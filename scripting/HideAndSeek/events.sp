@@ -12,6 +12,15 @@
 *
 */
 
+public Action Hns_Events_PlayerSpawn(Event event, const char[] name, bool dontBroadcast)
+{
+	int Client = GetClientOfUserId(GetEventInt(event, "userid"))
+
+	Hns_TeamCT_GiveShotgun(Client)
+
+	return Plugin_Continue
+}
+
 public Action Hns_Events_ItemPickup(Event event, const char[] name, bool dontBroadcast)
 {
 	int Client = GetClientOfUserId(GetEventInt(event, "userid"))
@@ -21,11 +30,12 @@ public Action Hns_Events_ItemPickup(Event event, const char[] name, bool dontBro
 	return Plugin_Continue
 }
 
-public Action Hns_Events_PlayerSpawn(Event event, const char[] name, bool dontBroadcast)
+public Action Hns_Events_WeaponFire(Event event, const char[] name, bool dontBroadcast)
 {
 	int Client = GetClientOfUserId(GetEventInt(event, "userid"))
 
-	Hns_TeamCT_GiveShotgun(Client)
+	if (GetConVarBool(Cvar_CtHpChangeEnable) == true)
+		Hns_TeamCT_HpDecrease(Client)
 
 	return Plugin_Continue
 }
@@ -52,16 +62,6 @@ public Action Hns_Events_PlayerDeath(Event event, const char[] name, bool dontBr
 public Action Hns_Events_WeaponDrop(int client, int weapon)
 {
 	Hns_TeamCT_WeaponDrop(client, weapon)
-
-	return Plugin_Continue
-}
-
-public Action Hns_Events_WeaponFire(Event event, const char[] name, bool dontBroadcast)
-{
-	int Client = GetClientOfUserId(GetEventInt(event, "userid"))
-
-	if (GetConVarBool(Cvar_CtHpChangeEnable) == true)
-		Hns_TeamCT_HpDecrease(Client)
 
 	return Plugin_Continue
 }

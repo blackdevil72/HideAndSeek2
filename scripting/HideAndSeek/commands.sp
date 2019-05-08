@@ -1,16 +1,15 @@
 /*
 *
-* Create HideAndSeek Commands
-* For Every One Then For Admins
+* Hide And Seek: Create HideAndSeek Commands
 *
 */
 
-public Hns_Commands_CreateCommands()
+public void Hns_Commands_CreateCommands()
 {
-	PrintToServer("[SM][HNS] Hns_CreateCommands call successfull")
+// Nothing Here Yet
 }
 
-public Hns_Commands_CreateAdminCommands()
+public void Hns_Commands_CreateAdminCommands()
 {
 	RegAdminCmd("sm_hns_version", Hns_Commands_PrintHnsVersion, ADMFLAG_CHAT, "Print Hide And Seek plugin version.")
 }
@@ -37,14 +36,17 @@ static Action Hns_Commands_PrintHnsVersion(int client, int args)
 	{
 		ReplyToCommand(client, "[SM][HnS] Plugin Disabled")
 
-		return Plugin_Handled
+		return Plugin_Continue
 	}
 
-	char PluginVersion[PLATFORM_MAX_PATH]
+	else
+	{
+		char PluginVersion[PLATFORM_MAX_PATH]
 
-	GetConVarString(Cvar_HnsVersion, PluginVersion, PLATFORM_MAX_PATH)
-	CPrintToChatAll("%s version %s", PREFIX, PluginVersion)
-	PrintToServer("[SM][HnS] Hide and Seek version %s", PluginVersion)
+		GetConVarString(Cvar_HnsVersion, PluginVersion, PLATFORM_MAX_PATH)
+		CPrintToChatAll("%s version %s", PREFIX, PluginVersion)
+		PrintToServer("[SM][HnS] Hide and Seek version %s", PluginVersion)
 
-	return Plugin_Handled
+		return Plugin_Continue
+	}
 }

@@ -5,7 +5,7 @@
 */
 
 // Sourcemod Hooks
-public Hns_Hooks_CreateHooks()
+public void Hns_Hooks_CreateHooks()
 {
 	HookEvent("player_spawn", Hns_Events_PlayerSpawn)
 	HookEvent("item_pickup", Hns_Events_ItemPickup)
@@ -14,7 +14,7 @@ public Hns_Hooks_CreateHooks()
 }
 
 // SDK Hooks
-public Hns_Hooks_CreateSdkHooks(int client)
+public void Hns_Hooks_CreateSdkHooks(int client)
 {
 	SDKHook(client, SDKHook_WeaponDrop, Hns_Events_WeaponDrop)
 	SDKHook(client, SDKHook_TraceAttack, Hns_Events_TraceAttack)

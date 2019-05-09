@@ -4,8 +4,15 @@
 *
 */
 
+// Free Team T At Spawn
+public void Hns_TeamT_ThirdPersonAtSpawn(int client)
+{
+	if (GetClientTeam(client) == CS_TEAM_T)
+		Client_SetThirdPersonMode(client)
+}
+
 // Prevent Team T From Using Any Weapons
-public Hns_TeamT_WeaponDrop(int client)
+public void Hns_TeamT_WeaponDrop(int client)
 {
 	if (GetClientTeam(client) == CS_TEAM_T)
 	{
@@ -23,7 +30,7 @@ public Hns_TeamT_WeaponDrop(int client)
 }
 
 // Manage HP Loss and Death For Team T
-public Hns_TeamT_TakeDamage(int client, float damage)
+public void Hns_TeamT_TakeDamage(int client, float damage)
 {
 	if (GetClientTeam(client) == CS_TEAM_T)
 	{

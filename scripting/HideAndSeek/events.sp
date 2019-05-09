@@ -2,8 +2,6 @@
 *
 * Hide And Seek : Load Hooked Events
 *
-* Read Function Name To Know What Event Is Called
-*
 */
 
 /*
@@ -16,7 +14,11 @@ public Action Hns_Events_PlayerSpawn(Event event, const char[] name, bool dontBr
 {
 	int Client = GetClientOfUserId(GetEventInt(event, "userid"))
 
+	Hns_TeamT_ThirdPersonAtSpawn(Client)
 	Hns_TeamCT_GiveShotgun(Client)
+
+	if (GetConVarBool(Cvar_FreezeCt) == true)
+		Hns_TeamCT_FreezeAtSpawn(Client)
 
 	return Plugin_Continue
 }
@@ -43,12 +45,9 @@ public Action Hns_Events_WeaponFire(Event event, const char[] name, bool dontBro
 public Action Hns_Events_PlayerDeath(Event event, const char[] name, bool dontBroadcast)
 {
 	int Client = GetClientOfUserId(GetEventInt(event, "userid"))
+	Global_IsPlayerFreeze[Client] = false
 
-	if (GetClientTeam(Client) == CS_TEAM_T)
-		Effect_DissolvePlayerRagDoll(Client, DISSOLVE_ELECTRICAL_LIGHT);
-	
-	else
-		Effect_DissolvePlayerRagDoll(Client, DISSOLVE_NORMAL);
+	Hns_Misc_CleanRagdolls(Client)
 
 	return Plugin_Continue
 }
@@ -69,7 +68,9 @@ public Action Hns_Events_WeaponDrop(int client, int weapon)
 public Action Hns_Events_TraceAttack(int victim, int &attacker, int &inflictor, float &damage, int &damagetype, int &ammotype, int hitbox, int hitgroup)
 {
 	Hns_TeamT_TakeDamage(victim, damage)
-	Hns_TeamCT_HpIncrease(attacker, victim)
+
+	if (GetConVarBool(Cvar_CtHpChangeEnable) == true)
+		Hns_TeamCT_HpIncrease(attacker, victim)
 
 	return Plugin_Handled
 }

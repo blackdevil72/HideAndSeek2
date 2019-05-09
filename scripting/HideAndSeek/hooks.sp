@@ -19,17 +19,3 @@ public void Hns_Hooks_CreateSdkHooks(int client)
 	SDKHook(client, SDKHook_WeaponDrop, Hns_Events_WeaponDrop)
 	SDKHook(client, SDKHook_TraceAttack, Hns_Events_TraceAttack)
 }
-
-// SDK Unhook
-/*
-public Hns_Hooks_ClearSdkHooks()
-{
-	for (int Client = 0; Client <= MAXPLAYERS; Client++)
-	{
-		if (IsClientInGame(Client))
-		{
-			SDKUnhook(Client, SDKHook_WeaponDropPost, Hns_Events_WeaponDropPost)
-		}
-	}
-}
-*/

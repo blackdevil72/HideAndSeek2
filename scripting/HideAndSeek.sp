@@ -14,6 +14,9 @@
 #include "HideAndSeek/commands.sp"
 #include "HideAndSeek/hooks.sp"
 #include "HideAndSeek/events.sp"
+#include "HideAndSeek/freeze.sp"
+#include "HideAndSeek/misc.sp"
+#include "HideAndSeek/timers.sp"
 #include "HideAndSeek/team_t.sp"
 #include "HideAndSeek/team_ct.sp"
 #include "HideAndSeek/sounds.sp"
@@ -29,11 +32,11 @@ public Plugin myinfo =
 
 public void OnPluginStart()
 {
-//	LoadTranslations("HideAndSeek.phrases")
-//	LoadTranslations("common.phrases")
+	LoadTranslations("HideAndSeek.phrases")
+	LoadTranslations("common.phrases")
 	Hns_Convars_CreateCvars()
 	Hns_Hooks_CreateHooks()
-//	Hns_Commands_CreateCommands()
+	Hns_Commands_CreateCommands()
 	Hns_Commands_CreateAdminCommands()
 
 	PrintToServer("[SM][HNS] HideAndSeeek %s load successfull", PLUGIN_VERSION)
@@ -46,5 +49,6 @@ public void OnConfigsExecuted()
 
 public void OnClientPutInServer(int client)
 {
+	Hns_Misc_ForceServerCfg()
 	Hns_Hooks_CreateSdkHooks(client)
 }

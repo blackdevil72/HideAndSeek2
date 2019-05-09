@@ -1,12 +1,12 @@
 /*
 *
-* Hide And Seek: Create HideAndSeek Commands
+* Hide And Seek: Create Commands
 *
 */
 
 public void Hns_Commands_CreateCommands()
 {
-// Nothing Here Yet
+	RegConsoleCmd("freeze", Hns_Commands_FreezePlayer, "Toggles freezing for hiders.")
 }
 
 public void Hns_Commands_CreateAdminCommands()
@@ -21,7 +21,33 @@ public void Hns_Commands_CreateAdminCommands()
 *
 */
 
-// Nothing Here Yet
+// Freeze Or UnFreeze A Player In Team T
+public Action Hns_Commands_FreezePlayer(int client, int args)
+{
+	if (GetClientTeam(client) == CS_TEAM_T)
+	{
+		if (Global_IsPlayerFreeze[client] == false && IsPlayerAlive(client))
+		{
+			Hns_Freeze_FreezePlayer(client)
+			CReplyToCommand(client, "%s%t", PREFIX, "HiderFreezed")
+		}
+
+		else if (Global_IsPlayerFreeze[client] == true && IsPlayerAlive(client))
+		{
+			Hns_Freeze_UnFreezePlayer(client)
+			CReplyToCommand(client, "%s%t", PREFIX, "HiderUnfreezed")
+		}
+
+		return Plugin_Continue
+	}
+
+	else
+	{
+		CReplyToCommand(client, "%s%t", PREFIX, "OnlyTerroristsCanUse")
+
+		return Plugin_Continue
+	}
+}
 
 /*
 *

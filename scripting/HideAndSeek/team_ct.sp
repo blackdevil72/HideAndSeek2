@@ -5,11 +5,22 @@
 */
 
 // Gives A Shotgun To Team CT
-public Hns_TeamCT_GiveShotgun(int client)
+public void Hns_TeamCT_GiveShotgun(int client)
 {
 	if (GetClientTeam(client) ==  CS_TEAM_CT)
 	{
 		GivePlayerItem(client, "Weapon_XM1014")
+	}
+}
+
+// Freeze Team CT At Spawn
+public void Hns_TeamCT_FreezeAtSpawn(int client)
+{
+	if (GetClientTeam(client) == CS_TEAM_CT)
+	{
+		Hns_Misc_BlindPlayer(client)
+		Hns_Freeze_FreezePlayer(client)
+		CreateTimer(GetConVarFloat(Cvar_FreezeTimeCt), Hns_Timers_UnFreezeCT, client)
 	}
 }
 
@@ -24,7 +35,7 @@ public Hns_TeamCT_WeaponDrop(int client, int weapon)
 }
 
 // Decrease CT Health When Fire Weapon
-public Hns_TeamCT_HpDecrease(int client)
+public void Hns_TeamCT_HpDecrease(int client)
 {
 	int ClientRemainingHealth = GetClientHealth(client) - GetConVarInt(Cvar_CtHpChangeDecrease)
 
@@ -36,7 +47,7 @@ public Hns_TeamCT_HpDecrease(int client)
 }
 
 // Increase CT Health When Hurting Or Killing A T
-public Hns_TeamCT_HpIncrease(int client, int victim)
+public void Hns_TeamCT_HpIncrease(int client, int victim)
 {
 	if (GetClientHealth(victim) < 0)
 		SetEntityHealth(client, GetClientHealth(client) + GetConVarInt(Cvar_CtHpChangeDecrease) + GetConVarInt(Cvar_CtHpChangeBonus))

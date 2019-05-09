@@ -39,7 +39,7 @@
 		"fr"			"Seuls les Terroristes peuvent choisir un Modèle."
 	}
 	
-	"Only terrorists can use"
+	"OnlyTerroristsCanUse"
 	{
 		"fr"			"Seuls les Terroristes peuvent utiliser cette commande."
 	}
@@ -124,7 +124,7 @@
 		"fr"			"Vous devez changer les CVARs ci-dessus ( dans la console) pour jouer sur ce serveur."
 	}
 
-	"protected cvar"
+	"ProtectedCvar"
 	{
 		"fr"			"Cette CVAR est protégée. N'y touchez pas !"
 	}
@@ -134,12 +134,12 @@
 		"fr"			"Les Terroristes survivant gagnent {1} points. Bien joué !"
 	}
 
-	"Hider Freezed"
+	"HiderFreezed"
 	{
 		"fr"			"Vous êtes maintenant gelé."
 	}
 
-	"Hider Unfreezed"
+	"HiderUnfreezed"
 	{
 		"fr"			"Vous pouvez de nouveau bouger."
 	}

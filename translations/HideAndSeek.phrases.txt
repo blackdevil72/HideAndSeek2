@@ -39,7 +39,7 @@
 		"en"			"Only terrorists can select models."
 	}
 	
-	"Only terrorists can use"
+	"OnlyTerroristsCanUse"
 	{
 		"en"			"Only terrorists can use this command."
 	}
@@ -128,7 +128,7 @@
 		"en"			"You have to change the above cvars (console) to play on this server."
 	}
 
-	"protected cvar"
+	"ProtectedCvar"
 	{
 		"en"			"This cvar is protected. Leave it alone!"
 	}
@@ -139,12 +139,12 @@
 		"en"			"All surviving hiders got {1} points. Good job!"
 	}
 
-	"Hider Freezed"
+	"HiderFreezed"
 	{
 		"en"			"You're frozen in place."
 	}
 
-	"Hider Unfreezed"
+	"HiderUnfreezed"
 	{
 		"en"			"You're able to move again."
 	}

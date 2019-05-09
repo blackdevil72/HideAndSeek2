@@ -16,6 +16,7 @@
 #include "HideAndSeek/events.sp"
 #include "HideAndSeek/freeze.sp"
 #include "HideAndSeek/misc.sp"
+#include "HideAndSeek/models.sp"
 #include "HideAndSeek/timers.sp"
 #include "HideAndSeek/team_t.sp"
 #include "HideAndSeek/team_ct.sp"
@@ -44,11 +45,12 @@ public void OnPluginStart()
 
 public void OnConfigsExecuted()
 {
+	Hns_Misc_ForceServerCfg()
 	Hns_Sounds_LoadGameSounds()
+	Hns_Models_LoadModels()
 }
 
 public void OnClientPutInServer(int client)
 {
-	Hns_Misc_ForceServerCfg()
 	Hns_Hooks_CreateSdkHooks(client)
 }

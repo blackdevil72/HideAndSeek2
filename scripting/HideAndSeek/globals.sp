@@ -77,3 +77,4 @@ int Global_ServerCfgPreviousValue[13]
 //HideAndSeek Globals
 bool Global_HnsEnabled
 bool Global_IsPlayerFreeze[MAXPLAYERS] = false
+int Global_TotalModels = 0

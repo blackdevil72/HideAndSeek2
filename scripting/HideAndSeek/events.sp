@@ -14,7 +14,11 @@ public Action Hns_Events_PlayerSpawn(Event event, const char[] name, bool dontBr
 {
 	int Client = GetClientOfUserId(GetEventInt(event, "userid"))
 
+	// Team T Spawn Events
 	Hns_TeamT_ThirdPersonAtSpawn(Client)
+	Hns_Models_SetRandomModel(Client)
+
+	// Team CT Spawn Events
 	Hns_TeamCT_GiveShotgun(Client)
 
 	if (GetConVarBool(Cvar_FreezeCt) == true)

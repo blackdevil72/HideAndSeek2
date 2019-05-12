@@ -7,7 +7,8 @@
 // HideAndSeek Defines
 #define PLUGIN_VERSION "2.0 dev"
 #define PREFIX "{green}Hide and Seek {default}> {lightgreen}"
-#define WHISTLE_MAX_SIZE 7
+#define SERVER_CFG_ARRAY 13
+#define MAX_WHISTLE_SOUNDS 7
 
 
 // HideAndSeek ConVars Initialisation
@@ -55,7 +56,7 @@ char Global_ServerCfg[13][] =
 }
 
 // Enforced Server Side Configs Value
-int Global_ServerCfgValue[13] =
+int Global_ServerCfgValue[SERVER_CFG_ARRAY] =
 {
 	0, // mp_flashlight
 	0, // sv_footsteps
@@ -72,9 +73,12 @@ int Global_ServerCfgValue[13] =
 	0 // mp_show_voice_icons
 }
 
-int Global_ServerCfgPreviousValue[13]
+// Enforced Server Cvars Previous Value
+int Global_ServerCfgPreviousValue[SERVER_CFG_ARRAY]
 
 //HideAndSeek Globals
 bool Global_HnsEnabled
 bool Global_IsPlayerFreeze[MAXPLAYERS] = false
-int Global_TotalModels = 0
+bool Global_ModelsLoaded
+int Global_TotalModels
+char Global_WhistlePath[MAX_WHISTLE_SOUNDS][PLATFORM_MAX_PATH]

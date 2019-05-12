@@ -7,7 +7,7 @@
 // Force Value Server Side Cvars
 public void Hns_Misc_ForceServerCfg()
 {
-	for (int ArrayPosition = 0; ArrayPosition < 12; ArrayPosition++)
+	for (int ArrayPosition = 0; ArrayPosition < SERVER_CFG_ARRAY - 1; ArrayPosition++)
 	{
 		if (GetConVarInt(FindConVar(Global_ServerCfg[ArrayPosition])) != Global_ServerCfgValue[ArrayPosition])
 		{
@@ -21,7 +21,7 @@ public void Hns_Misc_ForceServerCfg()
 // Make Sure Foced Configs Stay As Needed
 public void Hns_Misc_HookForceServerCfg(ConVar convar, const char[] oldValue, const char[] newValue)
 {
-	for (int ArrayPosition = 0; ArrayPosition < 12; ArrayPosition++)
+	for (int ArrayPosition = 0; ArrayPosition < SERVER_CFG_ARRAY - 1; ArrayPosition++)
 	{
 		char ConVarName[PLATFORM_MAX_PATH]
 

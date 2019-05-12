@@ -1,4 +1,4 @@
-public Hns_Models_LoadModels()
+public bool Hns_Models_LoadModels()
 {
 	Global_TotalModels = 0
 
@@ -7,47 +7,46 @@ public Hns_Models_LoadModels()
 	char CurrentMap[PLATFORM_MAX_PATH]
 	GetCurrentMap(CurrentMap, sizeof(CurrentMap))
 	
-	char ConfigFile[PLATFORM_MAX_PATH]
-	BuildPath(Path_SM, ConfigFile, sizeof(ConfigFile), "configs/HideAndSeek/maps/%s.cfg", CurrentMap)
+	char ConfigFilePath[PLATFORM_MAX_PATH]
+	BuildPath(Path_SM, ConfigFilePath, sizeof(ConfigFilePath), "configs/HideAndSeek/maps/%s.cfg", CurrentMap)
 
 	char ModelsPath[PLATFORM_MAX_PATH]
-	char ModelsCachePath[PLATFORM_MAX_PATH]
+	char ModelsCachedPath[PLATFORM_MAX_PATH]
 
-	if (!FileToKeyValues(Kv_Models, ConfigFile))
+	if (FileToKeyValues(Kv_Models, ConfigFilePath) == false)
 	{
-		PrintToServer("Can't parse modelconfig file for map %s.", CurrentMap)
+		Global_ModelsLoaded = false
+		PrintToServer("[SM][HnS] Can't parse Models config file for map %s.", CurrentMap)
 		CloseHandle(Kv_Models)
 
-		return
+		return false
 	}
 
 	else
 	{
-		FileToKeyValues(Kv_Models, ConfigFile)
-
 		KvGotoFirstSubKey(Kv_Models)
 
 		do
 		{
 			// Get Models Path And Precache It
 			KvGetSectionName(Kv_Models, ModelsPath, sizeof(ModelsPath))
-			FormatEx(ModelsCachePath, sizeof(ModelsCachePath), "models/%s.mdl", ModelsPath)
-			PrecacheModel(ModelsCachePath, true)
+			Format(ModelsCachedPath, sizeof(ModelsCachedPath), "models/%s.mdl", ModelsPath)
+			PrecacheModel(ModelsCachedPath, true)
 
 			Global_TotalModels++
 		}
-
 		while (KvGotoNextKey(Kv_Models))
 
+		Global_ModelsLoaded = true
 		CloseHandle(Kv_Models)
 
-		return
+		return true
 	}
 }
 
-public Hns_Models_SetRandomModel(int client)
+public void Hns_Models_SetRandomModel(int client)
 {
-	if (GetClientTeam(client) == CS_TEAM_T&& IsPlayerAlive(client) == true)
+	if (GetClientTeam(client) == CS_TEAM_T && IsPlayerAlive(client) && Global_ModelsLoaded == true)
 	{
 		int RandomModel = GetRandomInt(0, Global_TotalModels - 1)
 		int CurrentModel = 0
@@ -57,35 +56,29 @@ public Hns_Models_SetRandomModel(int client)
 		char CurrentMap[PLATFORM_MAX_PATH]
 		GetCurrentMap(CurrentMap, sizeof(CurrentMap))
 		
-		char ConfigFile[PLATFORM_MAX_PATH]
-		BuildPath(Path_SM, ConfigFile, sizeof(ConfigFile), "configs/HideAndSeek/maps/%s.cfg", CurrentMap)
+		char ConfigFilePath[PLATFORM_MAX_PATH]
+		BuildPath(Path_SM, ConfigFilePath, sizeof(ConfigFilePath), "configs/HideAndSeek/maps/%s.cfg", CurrentMap)
 
 		char ModelsPath[PLATFORM_MAX_PATH]
-		char ModelsCachePath[PLATFORM_MAX_PATH]
+		char ModelsCachedPath[PLATFORM_MAX_PATH]
 
-		FileToKeyValues(Kv_Models, ConfigFile)
-
-		if (!FileToKeyValues(Kv_Models, ConfigFile))
+		if (FileToKeyValues(Kv_Models, ConfigFilePath) == false)
 		{
 			CloseHandle(Kv_Models)
-
-			return
 		}
 
 		else
 		{
-			FileToKeyValues(Kv_Models, ConfigFile)
-
 			KvGotoFirstSubKey(Kv_Models)
 
 			do
 			{
 				if (RandomModel == CurrentModel)
 				{
-					// Get Models Path And Set It On Player
+					// Get Models Path And Set Model On Player
 					KvGetSectionName(Kv_Models, ModelsPath, sizeof(ModelsPath))
-					FormatEx(ModelsCachePath, sizeof(ModelsCachePath), "models/%s.mdl", ModelsPath)
-					SetEntityModel(client, ModelsCachePath)
+					Format(ModelsCachedPath, sizeof(ModelsCachedPath), "models/%s.mdl", ModelsPath)
+					SetEntityModel(client, ModelsCachedPath)
 
 					CloseHandle(Kv_Models)
 					break
@@ -93,12 +86,9 @@ public Hns_Models_SetRandomModel(int client)
 
 				CurrentModel++
 			}
-
 			while (KvGotoNextKey(Kv_Models))
 
 			CloseHandle(Kv_Models)
-
-			return
 		}
 	}
 }

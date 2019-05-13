@@ -7,6 +7,7 @@
 public void Hns_Commands_CreateCommands()
 {
 	RegConsoleCmd("freeze", Hns_Commands_FreezePlayer, "Toggles freezing for hiders.")
+	RegConsoleCmd("whistle", Hns_Commands_Whistle, "Toggles whistling for hiders.")
 }
 
 public void Hns_Commands_CreateAdminCommands()
@@ -36,6 +37,31 @@ public Action Hns_Commands_FreezePlayer(int client, int args)
 		{
 			Hns_Freeze_UnFreezePlayer(client)
 			CReplyToCommand(client, "%s%t", PREFIX, "HiderUnfreezed")
+		}
+
+		return Plugin_Continue
+	}
+
+	else
+	{
+		CReplyToCommand(client, "%s%t", PREFIX, "OnlyTerroristsCanUse")
+
+		return Plugin_Continue
+	}
+}
+
+// Play A Song To Give Team CT a Clue
+public Action Hns_Commands_Whistle(int client, int args)
+{
+	if (GetClientTeam(client) == CS_TEAM_T)
+	{
+		if (IsPlayerAlive(client) && GetConVarBool(Cvar_WhistleEnabled) && Global_PlayerWhistleCount[client] < GetConVarInt(Cvar_WhistleLimit))
+		{
+			Global_PlayerWhistleCount[client]++
+
+			Hns_Whistle_PlayWhistle(client)
+			CPrintToChatAll("%s%N %t", PREFIX, client, "Whistled")
+			CPrintToChat(client, "%s%t", PREFIX, "WhistleLeft", GetConVarInt(Cvar_WhistleLimit) - Global_PlayerWhistleCount[client])
 		}
 
 		return Plugin_Continue

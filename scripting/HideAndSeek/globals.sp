@@ -17,6 +17,11 @@ ConVar Cvar_HnsEnabled
 ConVar Cvar_FreezeCt
 ConVar Cvar_FreezeTimeCt
 
+ConVar Cvar_WhistleEnabled
+ConVar Cvar_WhistleSet
+
+ConVar Cvar_WhistleLimit
+
 ConVar Cvar_CtHpChangeEnable
 ConVar Cvar_CtHpChangeDecrease
 ConVar Cvar_CtHpChangeIncrease
@@ -25,15 +30,12 @@ ConVar Cvar_CtHpChangeBonus
 /*
 FUTURE CVARS NAMES MAY CHANGE
 
-ConVar cvar_ModelChangeLimit
-ConVar cvar_ModelChangeTime
-ConVar cvar_ModelAutoChoose
-ConVar cvar_WhistleEnabled
-ConVar cvar_WhistlePack
-ConVar cvar_WhistleAuto
-ConVar cvar_WhistleAutoInterval
-ConVar cvar_WhistleLimit
-ConVar cvar_WhistleDelay
+ConVar Cvar_ModelChangeLimit
+ConVar Cvar_ModelChangeTime
+ConVar Cvar_ModelAutoChoose
+ConVar Cvar_WhistleAuto
+ConVar Cvar_WhistleAutoInterval
+ConVar Cvar_WhistleDelay
 
 */
 
@@ -80,5 +82,8 @@ int Global_ServerCfgPreviousValue[SERVER_CFG_ARRAY]
 bool Global_HnsEnabled
 bool Global_IsPlayerFreeze[MAXPLAYERS] = false
 bool Global_ModelsLoaded
+
 int Global_TotalModels
+int Global_PlayerWhistleCount[MAXPLAYERS]
+
 char Global_WhistlePath[MAX_WHISTLE_SOUNDS][PLATFORM_MAX_PATH]

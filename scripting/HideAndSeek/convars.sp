@@ -11,6 +11,11 @@ public void Hns_Convars_CreateCvars()
 	Cvar_FreezeCt =					CreateConVar("sm_hns_freeze_ct", "1", "Freeze team CT at round start", _, true, 0.0, true, 1.0)
 	Cvar_FreezeTimeCt =				CreateConVar("sm_hns_freezetime_ct", "30", "How long should we freeze team CT at round start (in seconds)", _, true, 1.0, true, 600.0)
 
+	Cvar_WhistleEnabled =			CreateConVar("sm_hns_whistle", "1", "Are terrorists allowed to whistle?", _, true, 0.0, true, 1.0)
+	Cvar_WhistleSet =				CreateConVar("sm_hns_whistle_set", "0", "Wich whistle set to use. 0 = Default / 1 = Whistle / 2 = Birds / 3 = Custom", _, true, 0.0, true, 3.0)
+
+	Cvar_WhistleLimit =				CreateConVar("sm_hns_whistle_limit", "5", "How many times a hider is allowed to whistle per round?", _, true, 0.0, true, 100.0)
+
 	Cvar_CtHpChangeEnable =			CreateConVar("sm_hns_ct_hp_change", "1", "Should we change CT HP when using a weapon?", _, true, 0.0, true, 1.0)
 	Cvar_CtHpChangeDecrease =		CreateConVar("sm_hns_ct_hp_decrease", "5", "How many HP should we remove from CT when using a weapon?", _, true, 1.0, true, 100.0)
 	Cvar_CtHpChangeIncrease =		CreateConVar("sm_hns_ct_hp_increase", "15", "How many HP should we add to CT when hurting a T?", _, true, 0.0, true, 100.0)
@@ -20,15 +25,12 @@ public void Hns_Convars_CreateCvars()
 /*
 FUTURE CVARS NAMES MAY CHANGE
 
-	cvar_ModelChangeLimit =			CreateConVar("sm_hns_model_change_limit", "5","How many time the Terrorists should be able to change model [0 = no limit]", _, true, 0.0, true, 50)
-	cvar_ModelChangeTime =			CreateConVar("sm_hns_model_change_time", "30", "For how long can terrorist change model during a round [0 = no limit] (in seconds)", _, true, 0.0)
-	cvar_ModelAutoChoose =			CreateConVar("sm_hns_model_auto_choose", "1")
-	cvar_WhistleEnabled =			CreateConVar
-	cvar_WhistlePack =				CreateConVar
-	cvar_WhistleAuto =				CreateConVar
-	cvar_WhistleAutoInterval =		CreateConVar
-	cvar_WhistleLimit =				CreateConVar
-	cvar_WhistleDelay =				CreateConVar
+	Cvar_ModelChangeLimit =			CreateConVar("sm_hns_model_change_limit", "5","How many time the Terrorists should be able to change model [0 = no limit]", _, true, 0.0, true, 50)
+	Cvar_ModelChangeTime =			CreateConVar("sm_hns_model_change_time", "30", "For how long can terrorist change model during a round [0 = no limit] (in seconds)", _, true, 0.0)
+	Cvar_ModelAutoChoose =			CreateConVar("sm_hns_model_auto_choose", "1")
+	Cvar_WhistleAuto =				CreateConVar
+	Cvar_WhistleAutoInterval =		CreateConVar
+	Cvar_WhistleDelay =				CreateConVar
 */
 
 	Global_HnsEnabled = GetConVarBool(Cvar_HnsEnabled)

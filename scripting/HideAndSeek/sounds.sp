@@ -17,7 +17,8 @@ public void Hns_Sounds_LoadWhistleSounds(const char WhistleSetName[PLATFORM_MAX_
 	Handle Kv_SetsList = CreateKeyValues("SetsList")
 
 	char ConfigFilePath[PLATFORM_MAX_PATH]
-	BuildPath(Path_SM, ConfigFilePath, sizeof(ConfigFilePath), "configs/HideAndSeek/whistle/HnS_SetsList.cfg")
+	BuildPath(Path_SM, ConfigFilePath, sizeof(ConfigFilePath), "configs/HideAndSeek/whistle/setsList.cfg")
+	PrintToServer("%s", ConfigFilePath)
 
 	char WhistleCachedPath[MAX_WHISTLE_SOUNDS][PLATFORM_MAX_PATH]
 	char WhistlePosition[1]
@@ -40,7 +41,7 @@ public void Hns_Sounds_LoadWhistleSounds(const char WhistleSetName[PLATFORM_MAX_
 			else
 			{
 				CloseHandle(Kv_SetsList)
-				SetFailState("[SM][HnS] Configs/HideAndSeek/whistle/HnS_SetsList.cfg not correctly structured.")
+				SetFailState("[SM][HnS] configs/HideAndSeek/whistle/setslist.cfg not correctly structured.")
 			}
 		}
 
@@ -57,7 +58,7 @@ public void Hns_Sounds_LoadWhistleSounds(const char WhistleSetName[PLATFORM_MAX_
 					if (StrEqual(Global_WhistlePath[ArrayPosition], ""))
 					{
 						CloseHandle(Kv_SetsList)
-						SetFailState("[SM][HnS] Configs/HideAndSeek/whistle/HnS_SetsList.cfg not correctly structured.")
+						SetFailState("[SM][HnS] configs/HideAndSeek/whistle/setslist.cfg not correctly structured.")
 					}
 
 					else
@@ -72,7 +73,7 @@ public void Hns_Sounds_LoadWhistleSounds(const char WhistleSetName[PLATFORM_MAX_
 			else
 			{
 				CloseHandle(Kv_SetsList)
-				SetFailState("[SM][HnS] Configs/HideAndSeek/whistle/HnS_SetsList.cfg not correctly structured.")
+				SetFailState("[SM][HnS] configs/HideAndSeek/whistle/setslist.cfg not correctly structured.")
 			}
 		}
 	}
@@ -80,8 +81,9 @@ public void Hns_Sounds_LoadWhistleSounds(const char WhistleSetName[PLATFORM_MAX_
 	else
 	{
 		CloseHandle(Kv_SetsList)
-		SetFailState("[SM][HnS] Configs/HideAndSeek/whistle/HnS_SetsList.cfg not found.")
+		SetFailState("[SM][HnS] configs/HideAndSeek/whistle/setslist.cfg not found.")
 	}
+
 	CloseHandle(Kv_SetsList)
 	PrintToServer("[SM][HnS] Loading whistle: %s", WhistleSetName)
 }

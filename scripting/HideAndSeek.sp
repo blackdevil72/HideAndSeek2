@@ -21,6 +21,7 @@
 #include "HideAndSeek/team_t.sp"
 #include "HideAndSeek/team_ct.sp"
 #include "HideAndSeek/sounds.sp"
+#include "HideAndSeek/whistle.sp"
 
 public Plugin myinfo =
 {
@@ -45,9 +46,11 @@ public void OnPluginStart()
 
 public void OnConfigsExecuted()
 {
+	Global_ModelsLoaded = Hns_Models_LoadModels()
+
 	Hns_Misc_ForceServerCfg()
 	Hns_Sounds_LoadGameSounds()
-	Hns_Models_LoadModels()
+	Hns_Whistle_LoadWhistleSet()
 }
 
 public void OnClientPutInServer(int client)

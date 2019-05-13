@@ -71,7 +71,7 @@
 		"en"			"You don't think all terrorists are hidden well? Go find them!"
 	}	
 
-	"whistled"
+	"Whistled"
 	{
 		"en"			"whistled!"
 	}
@@ -81,7 +81,7 @@
 		"en"			"Automatic Whistle"
 	}
 
-	"whistles left"
+	"WhistleLeft"
 	{
 		"#format"		"{1:d}"
 		"en"			"You are allowed to whistle {1} more times."

@@ -69,7 +69,7 @@
 		"fr"			"Vous pensez que les Terroristes sont mal caché ? Cherchez les !"
 	}
 
-	"whistled"
+	"Whistled"
 	{
 		"fr"			"siffle !"
 	}
@@ -79,7 +79,7 @@
 		"fr"			"Sifflement Automatique"
 	}
     
-	"whistles left"
+	"WhistleLeft"
 	{
 		"fr"			"Vous pouvez encore siffler {1} fois."
 	}

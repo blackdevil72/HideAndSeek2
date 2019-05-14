@@ -83,7 +83,9 @@ bool Global_HnsEnabled
 bool Global_IsPlayerFreeze[MAXPLAYERS] = false
 bool Global_ModelsLoaded
 
+char Global_WhistlePath[MAX_WHISTLE_SOUNDS][PLATFORM_MAX_PATH]
+
+float Global_ModelHeightFix[MAXPLAYERS]
+
 int Global_TotalModels
 int Global_PlayerWhistleCount[MAXPLAYERS]
-
-char Global_WhistlePath[MAX_WHISTLE_SOUNDS][PLATFORM_MAX_PATH]

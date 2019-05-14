@@ -1,3 +1,10 @@
+/*
+*
+* Hide And Seek: Whistle Functions
+*
+*/
+
+// Load A Whistle Pack As Specified In Config
 public Hns_Whistle_LoadWhistleSet()
 {
 	if (GetConVarInt(Cvar_WhistleSet) == 0)
@@ -18,6 +25,9 @@ public Hns_Whistle_LoadWhistleSet()
 //	HookConVarChange("sm_hns_whistle_set", Hns_Whistle_LoadNewWhistleSet)
 }
 
+// NOT SURE IF WILL WORK AS INTENDED
+// Change Whistle Pack When Config If Changed
+/*
 public void Hns_Whistle_LoadNewWhistleSet(ConVar convar, const char[] oldValue, const char[] newValue)
 {
 	if (StringToInt(newValue) == 0)
@@ -35,11 +45,13 @@ public void Hns_Whistle_LoadNewWhistleSet(ConVar convar, const char[] oldValue, 
 	else
 		SetFailState("CVAR sm_hns_whistle_set not correctly setup.")
 }
+*/
 
 // Play A Whistling Sound From The Loaded Set
 public void Hns_Whistle_PlayWhistle(int client)
 {
 	float ClientPosition[3]
 	GetClientAbsOrigin(client, ClientPosition)
-	EmitAmbientSound(Global_WhistlePath[GetRandomInt(0, MAX_WHISTLE_SOUNDS-1)], ClientPosition, SOUND_FROM_WORLD, SNDLEVEL_AIRCRAFT, SND_NOFLAGS, SNDVOL_NORMAL, SNDPITCH_NORMAL, 0.0)
+
+	EmitAmbientSound(Global_WhistlePath[GetRandomInt(0, MAX_WHISTLE_SOUNDS - 1)], ClientPosition, SOUND_FROM_WORLD, SNDLEVEL_AIRCRAFT, SND_NOFLAGS, SNDVOL_NORMAL, SNDPITCH_NORMAL, 0.0)
 }

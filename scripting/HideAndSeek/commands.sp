@@ -50,7 +50,7 @@ public Action Hns_Commands_FreezePlayer(int client, int args)
 	}
 }
 
-// Play A Song To Give Team CT a Clue
+// Play A Song To Give Team CT A Clue Where To Search A T
 public Action Hns_Commands_Whistle(int client, int args)
 {
 	if (GetClientTeam(client) == CS_TEAM_T)
@@ -62,6 +62,11 @@ public Action Hns_Commands_Whistle(int client, int args)
 			Hns_Whistle_PlayWhistle(client)
 			CPrintToChatAll("%s%N %t", PREFIX, client, "Whistled")
 			CPrintToChat(client, "%s%t", PREFIX, "WhistleLeft", GetConVarInt(Cvar_WhistleLimit) - Global_PlayerWhistleCount[client])
+		}
+
+		else if (IsPlayerAlive(client) && GetConVarBool(Cvar_WhistleEnabled) && Global_PlayerWhistleCount[client] == GetConVarInt(Cvar_WhistleLimit))
+		{
+			CPrintToChat(client, "%s%t", PREFIX, "WhistleLimit", GetConVarInt(Cvar_WhistleLimit))
 		}
 
 		return Plugin_Continue

@@ -102,7 +102,7 @@
 		"en"			"Terrorists may whistle to give a hint. Type \"/whistle\" in chat!"
 	}
 	
-	"whistle limit exceeded"
+	"WhistleLimit"
 	{
 		"#format"		"{1:d}"
 		"en"			"You already used your {1} whistles this round."

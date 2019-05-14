@@ -71,10 +71,11 @@ public Action Hns_Events_WeaponDrop(int client, int weapon)
 
 public Action Hns_Events_TraceAttack(int victim, int &attacker, int &inflictor, float &damage, int &damagetype, int &ammotype, int hitbox, int hitgroup)
 {
-	Hns_TeamT_TakeDamage(victim, damage)
+	// Hns_TeamT_TakeDamage(victim, damage)
 
 	if (GetConVarBool(Cvar_CtHpChangeEnable) == true)
 		Hns_TeamCT_HpIncrease(attacker, victim)
 
-	return Plugin_Handled
+	// return Plugin_Handled
+	return Plugin_Continue
 }

@@ -99,7 +99,7 @@
 		"fr"			"Les Terroristes peuvent siffler pour aider les CTs. Utilisez \"/whistle\" dans le tchat !"
 	}
 	
-	"whistle limit exceeded"
+	"WhistleLimit"
 	{
 		"fr"			"Vous avez déjà sifflé {1} fois durant ce round."
 	}

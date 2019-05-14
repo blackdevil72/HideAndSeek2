@@ -17,11 +17,10 @@ public void Hns_Sounds_LoadWhistleSounds(const char WhistleSetName[PLATFORM_MAX_
 	Handle Kv_SetsList = CreateKeyValues("SetsList")
 
 	char ConfigFilePath[PLATFORM_MAX_PATH]
-	BuildPath(Path_SM, ConfigFilePath, sizeof(ConfigFilePath), "configs/HideAndSeek/whistle/setsList.cfg")
-	PrintToServer("%s", ConfigFilePath)
+	BuildPath(Path_SM, ConfigFilePath, sizeof(ConfigFilePath), "configs/hideandseek/whistle/setsList.cfg")
 
 	char WhistleCachedPath[MAX_WHISTLE_SOUNDS][PLATFORM_MAX_PATH]
-	char WhistlePosition[1]
+	char WhistlePosition[2]
 
 	if (FileToKeyValues(Kv_SetsList, ConfigFilePath))
 	{
@@ -30,10 +29,10 @@ public void Hns_Sounds_LoadWhistleSounds(const char WhistleSetName[PLATFORM_MAX_
 		{
 			if (KvJumpToKey(Kv_SetsList, WhistleSetName))
 			{
-				for (int ArrayPosition = 0; ArrayPosition < MAX_WHISTLE_SOUNDS - 1; ArrayPosition++)
+				for (int ArrayPosition = 0; ArrayPosition <= MAX_WHISTLE_SOUNDS - 1; ArrayPosition++)
 				{
 					IntToString(ArrayPosition, WhistlePosition, sizeof(WhistlePosition))
-					KvGetString(Kv_SetsList, WhistlePosition, Global_WhistlePath[ArrayPosition], sizeof(Global_WhistlePath))
+					KvGetString(Kv_SetsList, WhistlePosition, Global_WhistlePath[ArrayPosition], PLATFORM_MAX_PATH)
 					PrecacheSound(Global_WhistlePath[ArrayPosition], true)
 				}
 			}
@@ -41,7 +40,7 @@ public void Hns_Sounds_LoadWhistleSounds(const char WhistleSetName[PLATFORM_MAX_
 			else
 			{
 				CloseHandle(Kv_SetsList)
-				SetFailState("[SM][HnS] configs/HideAndSeek/whistle/setslist.cfg not correctly structured.")
+				SetFailState("[SM][HnS] configs/hideandseek/whistle/setslist.cfg not correctly structured.")
 			}
 		}
 
@@ -50,21 +49,21 @@ public void Hns_Sounds_LoadWhistleSounds(const char WhistleSetName[PLATFORM_MAX_
 		{
 			if (KvJumpToKey(Kv_SetsList, WhistleSetName))
 			{
-				for (int ArrayPosition = 0; ArrayPosition < MAX_WHISTLE_SOUNDS - 1; ArrayPosition++)
+				for (int ArrayPosition = 0; ArrayPosition <= MAX_WHISTLE_SOUNDS - 1; ArrayPosition++)
 				{
 					IntToString(ArrayPosition, WhistlePosition, sizeof(WhistlePosition))
-					KvGetString(Kv_SetsList, WhistlePosition, Global_WhistlePath[ArrayPosition], sizeof(Global_WhistlePath))
+					KvGetString(Kv_SetsList, WhistlePosition, Global_WhistlePath[ArrayPosition], PLATFORM_MAX_PATH)
 
 					if (StrEqual(Global_WhistlePath[ArrayPosition], ""))
 					{
 						CloseHandle(Kv_SetsList)
-						SetFailState("[SM][HnS] configs/HideAndSeek/whistle/setslist.cfg not correctly structured.")
+						SetFailState("[SM][HnS] configs/hideandseek/whistle/setslist.cfg not correctly structured.")
 					}
 
 					else
 					{
 						PrecacheSound(Global_WhistlePath[ArrayPosition], true)
-						Format(WhistleCachedPath[ArrayPosition], sizeof(WhistleCachedPath), "sound/%s", Global_WhistlePath[ArrayPosition])
+						Format(WhistleCachedPath[ArrayPosition], PLATFORM_MAX_PATH, "sound/%s", Global_WhistlePath[ArrayPosition])
 						AddFileToDownloadsTable(WhistleCachedPath[ArrayPosition])
 					}
 				}
@@ -73,7 +72,7 @@ public void Hns_Sounds_LoadWhistleSounds(const char WhistleSetName[PLATFORM_MAX_
 			else
 			{
 				CloseHandle(Kv_SetsList)
-				SetFailState("[SM][HnS] configs/HideAndSeek/whistle/setslist.cfg not correctly structured.")
+				SetFailState("[SM][HnS] configs/hideandseek/whistle/setslist.cfg not correctly structured.")
 			}
 		}
 	}
@@ -81,7 +80,7 @@ public void Hns_Sounds_LoadWhistleSounds(const char WhistleSetName[PLATFORM_MAX_
 	else
 	{
 		CloseHandle(Kv_SetsList)
-		SetFailState("[SM][HnS] configs/HideAndSeek/whistle/setslist.cfg not found.")
+		SetFailState("[SM][HnS] configs/hideandseek/whistle/setslist.cfg not found.")
 	}
 
 	CloseHandle(Kv_SetsList)

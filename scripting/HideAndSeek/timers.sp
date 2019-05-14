@@ -4,6 +4,7 @@
 *
 */
 
+// Timer Callback To UnFreeze Team CT At Spawn
 public Action Hns_Timers_UnFreezeCT(Handle timer, any data)
 {
 	Hns_Misc_UnBlindPlayer(data)

@@ -35,16 +35,6 @@ public void Hns_Misc_HookForceServerCfg(ConVar convar, const char[] oldValue, co
 	}
 }
 
-// Clean Ragdolls From The Floor
-public void Hns_Misc_CleanRagdolls(int client)
-{
-	if (GetClientTeam(client) == CS_TEAM_T)
-		Effect_DissolvePlayerRagDoll(client, DISSOLVE_ELECTRICAL_LIGHT);
-	
-	else
-		Effect_DissolvePlayerRagDoll(client, DISSOLVE_NORMAL);
-}
-
 // Blind Player
 public void Hns_Misc_BlindPlayer(int client)
 {
@@ -57,4 +47,14 @@ public void Hns_Misc_UnBlindPlayer(int client)
 {
 	if (IsClientInGame(client))
 		Client_ScreenFade(client, 0, FFADE_PURGE, 0, 0, 0, 0, 0)
+}
+
+// Clean Ragdolls From The Floor
+public void Hns_Misc_CleanRagdolls(int client)
+{
+	if (GetClientTeam(client) == CS_TEAM_T)
+		Effect_DissolvePlayerRagDoll(client, DISSOLVE_ELECTRICAL_LIGHT);
+	
+	else
+		Effect_DissolvePlayerRagDoll(client, DISSOLVE_NORMAL);
 }

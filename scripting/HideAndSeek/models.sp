@@ -8,8 +8,7 @@ public bool Hns_Models_LoadModels()
 	GetCurrentMap(CurrentMap, sizeof(CurrentMap))
 	
 	char ConfigFilePath[PLATFORM_MAX_PATH]
-	BuildPath(Path_SM, ConfigFilePath, sizeof(ConfigFilePath), "configs/HideAndSeek/maps/%s.cfg", CurrentMap)
-	PrintToServer("%s", ConfigFilePath)
+	BuildPath(Path_SM, ConfigFilePath, sizeof(ConfigFilePath), "configs/hideandseek/maps/%s.cfg", CurrentMap)
 
 	char ModelsPath[PLATFORM_MAX_PATH]
 	char ModelsCachedPath[PLATFORM_MAX_PATH]
@@ -56,7 +55,7 @@ public void Hns_Models_SetRandomModel(int client)
 		GetCurrentMap(CurrentMap, sizeof(CurrentMap))
 		
 		char ConfigFilePath[PLATFORM_MAX_PATH]
-		BuildPath(Path_SM, ConfigFilePath, sizeof(ConfigFilePath), "configs/HideAndSeek/maps/%s.cfg", CurrentMap)
+		BuildPath(Path_SM, ConfigFilePath, sizeof(ConfigFilePath), "configs/hideandseek/maps/%s.cfg", CurrentMap)
 
 		char ModelsPath[PLATFORM_MAX_PATH]
 		char ModelsCachedPath[PLATFORM_MAX_PATH]
@@ -78,6 +77,10 @@ public void Hns_Models_SetRandomModel(int client)
 					KvGetSectionName(Kv_Models, ModelsPath, sizeof(ModelsPath))
 					Format(ModelsCachedPath, sizeof(ModelsCachedPath), "models/%s.mdl", ModelsPath)
 					SetEntityModel(client, ModelsCachedPath)
+
+					Global_ModelHeightFix[client] = KvGetFloat(Kv_Models, "heightfix", 0.0)
+
+					Hns_Models_HeightFix(client)
 
 					CloseHandle(Kv_Models)
 					break
@@ -104,7 +107,7 @@ public void Hns_Models_SetModel(int client, int ModelId)
 		GetCurrentMap(CurrentMap, sizeof(CurrentMap))
 		
 		char ConfigFilePath[PLATFORM_MAX_PATH]
-		BuildPath(Path_SM, ConfigFilePath, sizeof(ConfigFilePath), "configs/HideAndSeek/maps/%s.cfg", CurrentMap)
+		BuildPath(Path_SM, ConfigFilePath, sizeof(ConfigFilePath), "configs/hideandseek/maps/%s.cfg", CurrentMap)
 
 		char ModelsPath[PLATFORM_MAX_PATH]
 		char ModelsCachedPath[PLATFORM_MAX_PATH]
@@ -127,6 +130,10 @@ public void Hns_Models_SetModel(int client, int ModelId)
 					Format(ModelsCachedPath, sizeof(ModelsCachedPath), "models/%s.mdl", ModelsPath)
 					SetEntityModel(client, ModelsCachedPath)
 
+					Global_ModelHeightFix[client] = KvGetFloat(Kv_Models, "heightfix", 0.0)
+
+					Hns_Models_HeightFix(client)
+
 					CloseHandle(Kv_Models)
 					break
 				}
@@ -136,6 +143,28 @@ public void Hns_Models_SetModel(int client, int ModelId)
 			while (KvGotoNextKey(Kv_Models))
 
 			CloseHandle(Kv_Models)
+		}
+	}
+}
+
+public void Hns_Models_HeightFix(int client)
+{
+	float ClientPosition[MAXPLAYERS][3]
+	float ClientPreviousHeight[MAXPLAYERS]
+
+	if (Global_ModelHeightFix[client] != 0.0)
+	{
+		while (IsPlayerAlive(client))
+		{
+			GetClientAbsOrigin(client, ClientPosition[client])
+
+			if (ClientPreviousHeight[client] != ClientPosition[client][2])
+			{
+				ClientPosition[client][2] = ClientPosition[client][2] + Global_ModelHeightFix[client]
+				ClientPreviousHeight[client] = ClientPosition[client][2]
+
+				TeleportEntity(client, ClientPosition[client], NULL_VECTOR, NULL_VECTOR)
+			}
 		}
 	}
 }

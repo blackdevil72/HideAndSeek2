@@ -86,6 +86,7 @@ bool Global_ModelsLoaded
 char Global_WhistlePath[MAX_WHISTLE_SOUNDS][PLATFORM_MAX_PATH]
 
 float Global_ModelHeightFix[MAXPLAYERS]
+float Global_NullVelocity[3] = {0.0, 0.0, 0.0}
 
 int Global_TotalModels
 int Global_PlayerWhistleCount[MAXPLAYERS]

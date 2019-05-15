@@ -80,7 +80,7 @@ public void Hns_Models_SetRandomModel(int client)
 
 					Global_ModelHeightFix[client] = KvGetFloat(Kv_Models, "heightfix", 0.0)
 
-					Hns_Models_HeightFix(client)
+					CreateTimer(2.0, Hns_Timers_HeightFix, client)
 
 					CloseHandle(Kv_Models)
 					break
@@ -132,7 +132,7 @@ public void Hns_Models_SetModel(int client, int ModelId)
 
 					Global_ModelHeightFix[client] = KvGetFloat(Kv_Models, "heightfix", 0.0)
 
-					Hns_Models_HeightFix(client)
+					CreateTimer(2.0, Hns_Timers_HeightFix, client)
 
 					CloseHandle(Kv_Models)
 					break
@@ -152,19 +152,21 @@ public void Hns_Models_HeightFix(int client)
 	float ClientPosition[MAXPLAYERS][3]
 	float ClientPreviousHeight[MAXPLAYERS]
 
-	if (Global_ModelHeightFix[client] != 0.0)
+	if (IsPlayerAlive(client) && Global_ModelHeightFix[client] != 0.0)
 	{
-		while (IsPlayerAlive(client))
+		GetClientAbsOrigin(client, ClientPosition[client])
+
+		if (ClientPreviousHeight[client] != ClientPosition[client][2])
 		{
-			GetClientAbsOrigin(client, ClientPosition[client])
+			ClientPosition[client][2] = ClientPosition[client][2] + Global_ModelHeightFix[client]
+			ClientPreviousHeight[client] = ClientPosition[client][2]
 
-			if (ClientPreviousHeight[client] != ClientPosition[client][2])
-			{
-				ClientPosition[client][2] = ClientPosition[client][2] + Global_ModelHeightFix[client]
-				ClientPreviousHeight[client] = ClientPosition[client][2]
-
-				TeleportEntity(client, ClientPosition[client], NULL_VECTOR, NULL_VECTOR)
-			}
+			//TeleportEntity(client, NULL_VECTOR, NULL_VECTOR, Global_NullVelocity)
+			TeleportEntity(client, ClientPosition[client], NULL_VECTOR, Global_NullVelocity)
+			//SetEntityMoveType(client, MOVETYPE_NONE)
 		}
+		
+		CreateTimer(0.1, Hns_Timers_HeightFix, client)
+		//Hns_Models_HeightFix(client)
 	}
 }

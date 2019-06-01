@@ -80,6 +80,7 @@ int Global_ServerCfgPreviousValue[SERVER_CFG_ARRAY]
 
 //HideAndSeek Globals
 bool Global_HnsEnabled
+bool Global_IsModelFixed[MAXPLAYERS] = false
 bool Global_IsPlayerFreeze[MAXPLAYERS] = false
 bool Global_ModelsLoaded
 

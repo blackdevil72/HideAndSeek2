@@ -4,7 +4,7 @@
 *
 */
 
-// Gives A Shotgun To Team CT
+// Gives A Shotgun To Team CT At Spawn
 public void Hns_TeamCT_GiveShotgun(int client)
 {
 	if (GetClientTeam(client) ==  CS_TEAM_CT)
@@ -19,7 +19,7 @@ public void Hns_TeamCT_FreezeAtSpawn(int client)
 	if (GetClientTeam(client) == CS_TEAM_CT)
 	{
 		Hns_Misc_BlindPlayer(client)
-		Hns_Freeze_FreezePlayer(client)
+		CreateTimer(0.5, Hns_Timers_FreezeCT, client)
 		CreateTimer(GetConVarFloat(Cvar_FreezeTimeCt), Hns_Timers_UnFreezeCT, client)
 	}
 }
@@ -54,4 +54,17 @@ public void Hns_TeamCT_HpIncrease(int client, int victim)
 
 	else
 		SetEntityHealth(client, GetClientHealth(client) + GetConVarInt(Cvar_CtHpChangeDecrease) + GetConVarInt(Cvar_CtHpChangeIncrease))
+}
+
+// Manage HP Decrease On Knife Right Click
+public void Hns_TeamCT_KnifeRightClick(int client, int& buttons)
+{
+	if(GetClientTeam(client) == CS_TEAM_CT)
+	{
+		char ClientWeaponName[MAXPLAYERS][PLATFORM_MAX_PATH]
+		GetClientWeapon(client, ClientWeaponName[client], PLATFORM_MAX_PATH)
+
+		if (CS_AliasToWeaponID(ClientWeaponName[client]) == CSWeapon_KNIFE && buttons & IN_ATTACK2)
+			Hns_TeamCT_HpDecrease(client)
+	}
 }

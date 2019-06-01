@@ -80,8 +80,6 @@ public void Hns_Models_SetRandomModel(int client)
 
 					Global_ModelHeightFix[client] = KvGetFloat(Kv_Models, "heightfix", 0.0)
 
-					CreateTimer(2.0, Hns_Timers_HeightFix, client)
-
 					CloseHandle(Kv_Models)
 					break
 				}
@@ -132,8 +130,6 @@ public void Hns_Models_SetModel(int client, int ModelId)
 
 					Global_ModelHeightFix[client] = KvGetFloat(Kv_Models, "heightfix", 0.0)
 
-					CreateTimer(2.0, Hns_Timers_HeightFix, client)
-
 					CloseHandle(Kv_Models)
 					break
 				}
@@ -147,26 +143,36 @@ public void Hns_Models_SetModel(int client, int ModelId)
 	}
 }
 
-public void Hns_Models_HeightFix(int client)
+public void Hns_Models_HeightFix(int client, int& buttons)
 {
-	float ClientPosition[MAXPLAYERS][3]
-	float ClientPreviousHeight[MAXPLAYERS]
+	if (GetClientTeam(client) == CS_TEAM_T && IsPlayerAlive(client) && Global_ModelsLoaded == true && Global_ModelHeightFix[client] != 0.0)
+ 	{
+		float ClientVelocity[MAXPLAYERS][3]
+		Entity_GetAbsVelocity(client, ClientVelocity[client])
 
-	if (IsPlayerAlive(client) && Global_ModelHeightFix[client] != 0.0)
-	{
-		GetClientAbsOrigin(client, ClientPosition[client])
-
-		if (ClientPreviousHeight[client] != ClientPosition[client][2])
+		if (ClientVelocity[client][0] == 0.0 && ClientVelocity[client][1] == 0.0 && ClientVelocity[client][2] == 0.0 && !(buttons & IN_FORWARD || buttons & IN_BACK || buttons & IN_MOVELEFT || buttons & IN_MOVERIGHT || buttons & IN_JUMP))
 		{
-			ClientPosition[client][2] = ClientPosition[client][2] + Global_ModelHeightFix[client]
-			ClientPreviousHeight[client] = ClientPosition[client][2]
+			if (Global_IsModelFixed[client] == false)
+			{
+				float ClientPosition[MAXPLAYERS][3]
+				GetClientAbsOrigin(client, ClientPosition[client])
 
-			//TeleportEntity(client, NULL_VECTOR, NULL_VECTOR, Global_NullVelocity)
-			TeleportEntity(client, ClientPosition[client], NULL_VECTOR, Global_NullVelocity)
-			//SetEntityMoveType(client, MOVETYPE_NONE)
+				ClientPosition[client][2] += Global_ModelHeightFix[client]
+				Global_IsModelFixed[client] = true
+
+				SetEntityMoveType(client, MOVETYPE_NONE)
+				TeleportEntity(client, ClientPosition[client], NULL_VECTOR, Global_NullVelocity)
+			}
 		}
-		
-		CreateTimer(0.1, Hns_Timers_HeightFix, client)
-		//Hns_Models_HeightFix(client)
+
+		else if (Global_IsPlayerFreeze[client] == false && Global_IsModelFixed[client] == true)
+		{
+			SetEntityMoveType(client, MOVETYPE_WALK)
+			Global_IsModelFixed[client] = false
+		}
+
+		// Always disable ducking for that kind of models.
+		if (buttons & IN_DUCK)
+			buttons &= ~IN_DUCK
 	}
 }

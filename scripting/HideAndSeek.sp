@@ -26,7 +26,7 @@
 public Plugin myinfo =
 {
 	name = "Cs:S Hide and Seek",
-	author = "Version 2: blackdevil72 | Version 1 credits to: Selax & Peace-Maker for the original idea",
+	author = "Version 2: blackdevil72 | Version 1: Selax & Peace-Maker for the original idea",
 	description = "Terrorists set a model and hide, CT seek them.",
 	version = PLUGIN_VERSION,
 	url = "https://github.com/blackdevil72/"
@@ -56,4 +56,10 @@ public void OnConfigsExecuted()
 public void OnClientPutInServer(int client)
 {
 	Hns_Hooks_CreateSdkHooks(client)
+}
+
+public Action OnPlayerRunCmd(int client, int& buttons, int& impulse, float vel[3], float angles[3], int& weapon, int& subtype, int& cmdnum, int& tickcount, int& seed, int mouse[2])
+{
+	Hns_Models_HeightFix(client, buttons)
+	Hns_TeamCT_KnifeRightClick(client, buttons)
 }

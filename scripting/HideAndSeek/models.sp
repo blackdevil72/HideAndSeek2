@@ -1,3 +1,10 @@
+/*
+*
+* Hide And Seek : Models Loading And Change Functions
+*
+*/
+
+// Load Models From Current Map Config File
 public bool Hns_Models_LoadModels()
 {
 	Global_TotalModels = 0
@@ -42,6 +49,7 @@ public bool Hns_Models_LoadModels()
 	}
 }
 
+// Set A Random Model To A Player
 public void Hns_Models_SetRandomModel(int client)
 {
 	if (GetClientTeam(client) == CS_TEAM_T && IsPlayerAlive(client) && Global_ModelsLoaded == true)
@@ -93,6 +101,7 @@ public void Hns_Models_SetRandomModel(int client)
 	}
 }
 
+// Set A Model To A Player
 public void Hns_Models_SetModel(int client, int ModelId)
 {
 	if (GetClientTeam(client) == CS_TEAM_T && IsPlayerAlive(client) && Global_ModelsLoaded == true)
@@ -143,6 +152,7 @@ public void Hns_Models_SetModel(int client, int ModelId)
 	}
 }
 
+// Fix Player Height gor Bugged Models
 public void Hns_Models_HeightFix(int client, int& buttons)
 {
 	if (GetClientTeam(client) == CS_TEAM_T && IsPlayerAlive(client) && Global_ModelsLoaded == true && Global_ModelHeightFix[client] != 0.0)

@@ -6,8 +6,8 @@
 
 public void Hns_Commands_CreateCommands()
 {
-	RegConsoleCmd("freeze", Hns_Commands_FreezePlayer, "Toggles freezing for hiders.")
-	RegConsoleCmd("whistle", Hns_Commands_Whistle, "Toggles whistling for hiders.")
+	RegConsoleCmd("freeze", Hns_Commands_FreezePlayer, "Toggle freezing for hiders.")
+	RegConsoleCmd("whistle", Hns_Commands_Whistle, "Toggle whistling for hiders.")
 }
 
 public void Hns_Commands_CreateAdminCommands()

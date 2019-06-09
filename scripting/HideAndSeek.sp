@@ -6,7 +6,7 @@
 
 // Third Party Includes
 #include <morecolors> // https://forums.alliedmods.net/showthread.php?t=185016
-#include <smlib> // https://github.com/bcserv/smlib
+#include <smlib> // https://github.com/bcserv/smlib/tree/transitional_syntax
 
 // HideAndSeek Includes
 #include "HideAndSeek/globals.sp"

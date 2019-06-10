@@ -27,6 +27,8 @@ ConVar Cvar_CtHpChangeDecrease
 ConVar Cvar_CtHpChangeIncrease
 ConVar Cvar_CtHpChangeBonus
 
+ConVar Cvar_CtDisableKnifeRightClick
+
 /*
 FUTURE CVARS NAMES MAY CHANGE
 

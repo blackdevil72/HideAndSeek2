@@ -30,26 +30,24 @@ public Hns_TeamCT_WeaponDrop(int client, int weapon)
 	if (GetClientTeam(client) == CS_TEAM_CT)
 	{
 		if (weapon != -1)
+		{
+			CS_DropWeapon(client, weapon, false)
 			RemoveEntity(weapon)
+		}
 	}
 }
 
 // Decrease CT Health When Fire Weapon
 public void Hns_TeamCT_HpDecrease(int client)
 {
-	int ClientRemainingHealth = GetClientHealth(client) - GetConVarInt(Cvar_CtHpChangeDecrease)
-
-	if (ClientRemainingHealth > 0)
-		SetEntityHealth(client, ClientRemainingHealth)
-
-	else
-		ForcePlayerSuicide(client)
+	if (GetConVarBool(Cvar_CtHpChangeEnable) == true)
+		Entity_TakeHealth(client, GetConVarInt(Cvar_CtHpChangeDecrease))
 }
 
 // Increase CT Health When Hurting Or Killing A T
 public void Hns_TeamCT_HpIncrease(int client, int victim)
 {
-	if (GetClientHealth(victim) < 0)
+	if (GetClientHealth(victim) <= 0)
 		SetEntityHealth(client, GetClientHealth(client) + GetConVarInt(Cvar_CtHpChangeDecrease) + GetConVarInt(Cvar_CtHpChangeBonus))
 
 	else
@@ -64,7 +62,10 @@ public void Hns_TeamCT_KnifeRightClick(int client, int& buttons)
 		char ClientWeaponName[MAXPLAYERS][PLATFORM_MAX_PATH]
 		GetClientWeapon(client, ClientWeaponName[client], PLATFORM_MAX_PATH)
 
-		if (CS_AliasToWeaponID(ClientWeaponName[client]) == CSWeapon_KNIFE && buttons & IN_ATTACK2)
+		if (CS_AliasToWeaponID(ClientWeaponName[client]) == CSWeapon_KNIFE && buttons & IN_ATTACK2 && !GetConVarBool(Cvar_CtDisableKnifeRightClick))
 			Hns_TeamCT_HpDecrease(client)
+
+		else if (CS_AliasToWeaponID(ClientWeaponName[client]) == CSWeapon_KNIFE && buttons & IN_ATTACK2 && GetConVarBool(Cvar_CtDisableKnifeRightClick))
+			buttons &= ~IN_ATTACK2
 	}
 }

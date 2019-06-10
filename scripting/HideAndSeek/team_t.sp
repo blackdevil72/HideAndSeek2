@@ -34,12 +34,6 @@ public void Hns_TeamT_TakeDamage(int client, float damage)
 {
 	if (GetClientTeam(client) == CS_TEAM_T)
 	{
-		int ClientRemainingHealth = GetClientHealth(client) - RoundToFloor(damage)
-
-		if (ClientRemainingHealth < 0)
-			ForcePlayerSuicide(client)
-
-		else
-			SetEntityHealth(client, ClientRemainingHealth)
+		Entity_TakeHealth(client, RoundToFloor(damage))
 	}
 }

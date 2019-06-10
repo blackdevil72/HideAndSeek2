@@ -91,3 +91,7 @@ float Global_NullVelocity[3] = {0.0, 0.0, 0.0}
 
 int Global_TotalModels
 int Global_PlayerWhistleCount[MAXPLAYERS]
+int Global_FakeModel[MAXPLAYERS] = -1
+
+// Offsets
+int Offset_fFlags

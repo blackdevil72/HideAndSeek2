@@ -6,7 +6,7 @@
 
 // Third Party Includes
 #include <morecolors> // https://forums.alliedmods.net/showthread.php?t=185016
-#include <smlib> // https://github.com/bcserv/smlib/tree/transitional_syntax
+#include <smlib> // Global_IsPlayerFreeze[client]https://github.com/bcserv/smlib/tree/transitional_syntax
 
 // HideAndSeek Includes
 #include "HideAndSeek/globals.sp"
@@ -37,6 +37,7 @@ public void OnPluginStart()
 	LoadTranslations("HideAndSeek.phrases")
 	LoadTranslations("common.phrases")
 	Hns_Convars_CreateCvars()
+	Hns_Misc_Offsets()
 	Hns_Hooks_CreateHooks()
 	Hns_Commands_CreateCommands()
 	Hns_Commands_CreateAdminCommands()

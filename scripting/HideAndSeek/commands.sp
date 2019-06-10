@@ -30,12 +30,14 @@ public Action Hns_Commands_FreezePlayer(int client, int args)
 		if (Global_IsPlayerFreeze[client] == false && IsPlayerAlive(client))
 		{
 			Hns_Freeze_FreezePlayer(client)
+			Hns_Freeze_FreezeModel(client)
 			CReplyToCommand(client, "%s%t", PREFIX, "HiderFreezed")
 		}
 
 		else if (Global_IsPlayerFreeze[client] == true && IsPlayerAlive(client))
 		{
 			Hns_Freeze_UnFreezePlayer(client)
+			Hns_Freeze_UnFreezeModel(client)
 			CReplyToCommand(client, "%s%t", PREFIX, "HiderUnfreezed")
 		}
 

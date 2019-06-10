@@ -85,6 +85,7 @@ public void Hns_Models_SetRandomModel(int client)
 					KvGetSectionName(Kv_Models, ModelsPath, sizeof(ModelsPath))
 					Format(ModelsCachedPath, sizeof(ModelsCachedPath), "models/%s.mdl", ModelsPath)
 					SetEntityModel(client, ModelsCachedPath)
+					Entity_SetSolidType(client, SOLID_VPHYSICS)
 
 					Global_ModelHeightFix[client] = KvGetFloat(Kv_Models, "heightfix", 0.0)
 

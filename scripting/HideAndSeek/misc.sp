@@ -4,6 +4,14 @@
 *
 */
 
+public void Hns_Misc_Offsets()
+{
+	Offset_fFlags = FindSendPropInfo("CBasePlayer", "m_fFlags")
+
+	if (Offset_fFlags == -1)
+		SetFailState("Couldnt find the m_fFlags offset!")
+}
+
 // Force Value Server Side Cvars
 public void Hns_Misc_ForceServerCfg()
 {

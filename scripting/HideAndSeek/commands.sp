@@ -8,6 +8,9 @@ public void Hns_Commands_CreateCommands()
 {
 	RegConsoleCmd("freeze", Hns_Commands_FreezePlayer, "Toggle freezing for hiders.")
 	RegConsoleCmd("whistle", Hns_Commands_Whistle, "Toggle whistling for hiders.")
+	RegConsoleCmd("tp", Hns_Commands_ThirdPerson, "Toggle thirdperson view.")
+	RegConsoleCmd("third", Hns_Commands_ThirdPerson, "Toggle thirdperson view.")
+	RegConsoleCmd("thirdperson", Hns_Commands_ThirdPerson, "Toggle thirdperson view.")
 }
 
 public void Hns_Commands_CreateAdminCommands()
@@ -77,6 +80,24 @@ public Action Hns_Commands_Whistle(int client, int args)
 	else
 	{
 		CReplyToCommand(client, "%s%t", PREFIX, "OnlyTerroristsCanUse")
+
+		return Plugin_Continue
+	}
+}
+
+// Ŝet Thirdperson View On Team T
+public Action Hns_Commands_ThirdPerson(int client, int args)
+{
+	if (GetClientTeam(client) == CS_TEAM_CT)
+	{
+		CReplyToCommand(client, "%s%t", PREFIX, "OnlyTerroristsCanUse")
+
+		return Plugin_Continue
+	}
+
+	else
+	{
+		Hns_TeamT_ThirdPerson(client)
 
 		return Plugin_Continue
 	}

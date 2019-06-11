@@ -5,10 +5,19 @@
 */
 
 // Free Team T At Spawn
-public void Hns_TeamT_ThirdPersonAtSpawn(int client)
+public void Hns_TeamT_ThirdPerson(int client)
 {
-	if (GetClientTeam(client) == CS_TEAM_T)
-		Client_SetThirdPersonMode(client)
+	if (GetClientTeam(client) == CS_TEAM_T && Global_IsPlayerTP[client] == false)
+	{
+		Client_SetThirdPersonMode(client, true)
+		Global_IsPlayerTP[client] = true
+	}
+
+	else if (GetClientTeam(client) == CS_TEAM_T && Global_IsPlayerTP[client] == true)
+	{
+		Client_SetThirdPersonMode(client, false)
+		Global_IsPlayerTP[client] = false
+	}
 }
 
 // Prevent Team T From Using Any Weapons

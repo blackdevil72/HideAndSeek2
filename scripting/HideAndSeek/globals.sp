@@ -16,6 +16,7 @@ ConVar Cvar_HnsVersion
 ConVar Cvar_HnsEnabled
 ConVar Cvar_FreezeCt
 ConVar Cvar_FreezeTimeCt
+ConVar Cvar_AutoThirdperson
 
 ConVar Cvar_WhistleEnabled
 ConVar Cvar_WhistleSet
@@ -84,6 +85,7 @@ int Global_ServerCfgPreviousValue[SERVER_CFG_ARRAY]
 bool Global_HnsEnabled
 bool Global_IsModelFixed[MAXPLAYERS] = false
 bool Global_IsPlayerFreeze[MAXPLAYERS] = false
+bool Global_IsPlayerTP[MAXPLAYERS] = false
 bool Global_ModelsLoaded
 
 char Global_WhistlePath[MAX_WHISTLE_SOUNDS][PLATFORM_MAX_PATH]
@@ -91,9 +93,9 @@ char Global_WhistlePath[MAX_WHISTLE_SOUNDS][PLATFORM_MAX_PATH]
 float Global_ModelHeightFix[MAXPLAYERS]
 float Global_NullVelocity[3] = {0.0, 0.0, 0.0}
 
-int Global_TotalModels
-int Global_PlayerWhistleCount[MAXPLAYERS]
 int Global_FakeModel[MAXPLAYERS] = -1
+int Global_PlayerWhistleCount[MAXPLAYERS]
+int Global_TotalModels
 
 // Offsets
 int Offset_fFlags

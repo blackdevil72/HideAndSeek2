@@ -15,7 +15,9 @@ public Action Hns_Events_PlayerSpawn(Event event, const char[] name, bool dontBr
 	int Client = GetClientOfUserId(GetEventInt(event, "userid"))
 
 	// Team T Spawn Events
-	Hns_TeamT_ThirdPersonAtSpawn(Client)
+	if (GetConVarBool(Cvar_AutoThirdperson) == true)
+		Hns_TeamT_ThirdPerson(Client)
+
 	Hns_Models_SetRandomModel(Client)
 
 	// Team CT Spawn Events
@@ -54,6 +56,13 @@ public Action Hns_Events_PlayerDeath(Event event, const char[] name, bool dontBr
 	Hns_Misc_CleanRagdolls(Client)
 
 	return Plugin_Continue
+}
+
+public Action Hns_Events_Roundend(Event event, const char[] name, bool dontBroadcast)
+{
+	int Client = GetClientOfUserId(GetEventInt(event, "userid"))
+
+	Hns_TeamT_ThirdPerson(Client)
 }
 
 /*

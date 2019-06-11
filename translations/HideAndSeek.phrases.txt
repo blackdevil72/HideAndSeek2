@@ -211,7 +211,7 @@
 		"en"			"Displays the model choice menu."
 	}
 
-	"cmd tp"
+	"CmdTp"
 	{
 		"en"			"Toggles the thirdperson view."
 	}

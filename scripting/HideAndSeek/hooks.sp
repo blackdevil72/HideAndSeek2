@@ -11,6 +11,7 @@ public void Hns_Hooks_CreateHooks()
 	HookEvent("item_pickup", Hns_Events_ItemPickup)
 	HookEvent("weapon_fire", Hns_Events_WeaponFire)
 	HookEvent("player_death", Hns_Events_PlayerDeath)
+	HookEvent("round_end", Hns_Events_Roundend)
 }
 
 // SDK Hooks

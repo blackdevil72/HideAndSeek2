@@ -204,7 +204,7 @@
 		"fr"			"Affiche le menu de choix des Modèles."
 	}
 
-	"cmd tp"
+	"CmdTp"
 	{
 		"fr"			"Passe en vu à la 3ème personne."
 	}

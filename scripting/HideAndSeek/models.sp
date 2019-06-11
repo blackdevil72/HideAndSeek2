@@ -183,7 +183,7 @@ public void Hns_Models_HeightFix(int client, int& buttons)
 		}
 
 		// Always disable ducking for that kind of models.
-//		if (buttons & IN_DUCK)
-//			buttons &= ~IN_DUCK
+		if (buttons & IN_DUCK)
+			buttons &= ~IN_DUCK
 	}
 }

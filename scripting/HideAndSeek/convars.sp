@@ -16,6 +16,7 @@ public void Hns_Convars_CreateCvars()
 	Cvar_WhistleEnabled =					CreateConVar("sm_hns_whistle", "1", "Are terrorists allowed to whistle?", _, true, 0.0, true, 1.0)
 	Cvar_FreezeTimeCt =						CreateConVar("sm_hns_freezetime_ct", "30", "How long should we freeze team CT at round start (in seconds)", _, true, 1.0, true, 600.0)
 	Cvar_FreezeCt =							CreateConVar("sm_hns_freeze_ct", "1", "Freeze team CT at round start", _, true, 0.0, true, 1.0)
+	Cvar_AutoThirdperson =					CreateConVar("sm_hns_auto_thirdperson", "1", "Automaticly set terrorists in thirdperson view at spawn", _, true, 0.0, true, 1.0)
 	Cvar_HnsEnabled =						CreateConVar("sm_hns_enable", "1", "Enable Hide And Seek Plugin", _, true, 0.0, true, 1.0)
 	Cvar_HnsVersion =						CreateConVar("sm_hns_version", PLUGIN_VERSION, "SM Hide And Seek Version", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD)
 
